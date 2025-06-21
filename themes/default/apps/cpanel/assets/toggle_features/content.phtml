@@ -1,0 +1,407 @@
+<div class="cp-app-container" data-app="toggle-features">
+    <div class="current-page-name">
+        <div class="lp">
+            <h1>
+                切换功能（新）
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        切换功能 <b>(Enable / Disable)</b>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="inline-alertbox-wrapper">
+                        <div class="inline-alertbox info">
+                            <div class="icon">
+                                <?php echo cl_ficon("info"); ?>
+                            </div>
+                            <div class="alert-message">
+                                <p>
+                                    请注意，关闭特定功能后，用户将无法使用它，直到您再次打开它
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <h4>
+                        系统功能开关
+                    </h4>
+                    <br>
+                    <form class="form" data-an="form">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="user_signup-input">
+                                    <label>
+                                        用户注册系统
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="user_signup" class="form-control">
+                                            <option value="on" <?php if($cl['config']['user_signup'] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl['config']['user_signup'] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        如果您禁用此选项，那么新用户将无法在您的网站上注册 <br>
+                                        然而，您仍然可以通过邀请链接邀请用户<br>
+
+                                        所有拥有邀请链接的用户将能够在您的网站上注册： <a href="<?php echo cl_link('admin_panel/invite_users'); ?>"><b>Invite users to <?php echo($cl['config']['name']); ?></b></a>
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="cookie_warning_popup-input">
+                                    <label>
+                                        Cookie警告弹窗
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="cookie_warning_popup" class="form-control">
+                                            <option value="on" <?php if($cl['config']['cookie_warning_popup'] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl['config']['cookie_warning_popup'] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        如果您禁用此选项，当用户进入您的网站时，将不会被告知使用Cookie的情况。我们强烈建议您保留此选项，以避免与法律相关的问题
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="email_notifications-input">
+                                    <label>
+                                        电子邮件通知系统
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="email_notifications" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["email_notifications"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["email_notifications"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        <b class="col-red">注意!</b>
+                                        <span class="d-block">
+                                            请注意，如果您启用此功能，那么请准备好服务器上的重负载，并确保您的SMTP服务器已配置并正在运行。SMTP设置可以在此页面完成
+                                        </span>
+                                        <span class="d-block">
+                                            在这里，您可以设置您的SMTP服务器： <a href="<?php cl_link('admin_panel/email_settings'); ?>">SMTP settings</a>
+                                        </span>
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="swift_system_status-input">
+                                    <label>
+                                        Swifts系统状态（每日故事）
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="swift_system_status" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["swift_system_status"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["swift_system_status"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        如果您关闭此系统，那么用户将无法发布故事，同时所有用户的故事，包括当前的故事，将完全对所有用户隐藏
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="system_api_status-input">
+                                    <label>
+                                        系统API状态
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="system_api_status" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["system_api_status"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["system_api_status"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        <b class="col-red">注意!</b>
+                                        <span class="d-block">
+                                            请注意，如果您禁用此功能，那么所有使用此站点API的设备将被断开连接，并将无法在任何模式下工作
+                                        </span>
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="user_wallet_status-input">
+                                    <label>
+                                        用户钱包状态
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="user_wallet_status" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["user_wallet_status"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["user_wallet_status"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        <b class="col-red">注意!</b>
+                                        <span class="d-block">
+                                            禁用用户钱包系统意味着您的用户将无法充值余额，查看钱包状态，或在您的网站上支付订阅或其他支付交易
+                                        </span>
+                                    </small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group no-mb">
+                                <button data-an="submit-ctrl" type="submit" class="btn btn-primary">
+                                    保存更改
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <h4>
+                            发布功能开关
+                        </h4>
+                        <br>
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="post_video_download_system-input">
+                                    <label>
+                                        文章视频下载系统（允许视频下载）
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="post_video_download_system" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["post_video_download_system"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["post_video_download_system"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        请注意，如果您禁用此功能，用户将无法下载视频。换句话说，在发布下拉菜单中将不会出现下载视频的选项
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="post_audio_download_system-input">
+                                    <label>
+                                        文章音频下载系统（允许音频下载）
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="post_audio_download_system" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["post_audio_download_system"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["post_audio_download_system"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        请注意，如果您禁用此功能，用户将无法下载音频。换句话说，在发布下拉菜单中将不会出现下载音频的选项
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="donation_system_status-input">
+                                    <label>
+                                        捐赠系统状态（允许用户筹集资金）
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="donation_system_status" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["donation_system_status"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["donation_system_status"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        请注意，如果您禁用此功能，用户将无法创建筹款活动。然而，所有当前的筹款活动将不受影响或停止
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="post_images_system-input">
+                                    <label>
+                                        文章图片系统状态（允许用户上传图片）
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="post_images_system" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["post_images_system"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["post_images_system"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        请注意，如果您禁用此功能，用户将无法在上传图片到他们的帖子或回复
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="post_videos_system-input">
+                                    <label>
+                                        文章视频系统状态（允许用户上传视频）
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="post_videos_system" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["post_videos_system"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["post_videos_system"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        请注意，如果您禁用此功能，用户将无法在上传视频到他们的帖子或回复
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="post_audio_system-input">
+                                    <label>
+                                        文章音频文件系统状态（允许用户上传音频文件）
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="post_audio_system" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["post_audio_system"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["post_audio_system"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        请注意，如果您禁用此功能，用户将无法在上传音频文件到他们的帖子或回复
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="post_documents_system-input">
+                                    <label>
+                                        文章文档文件系统状态（允许用户上传文档文件）
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="post_documents_system" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["post_documents_system"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["post_documents_system"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        请注意，如果您禁用此功能，用户将无法在上传文档文件到他们的帖子或回复
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="post_record_system-input">
+                                    <label>
+                                        文章语音录制系统状态（允许用户发布语音记录）
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="post_record_system" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["post_record_system"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["post_record_system"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        请注意，如果您禁用此功能，用户将无法在他们的发布或回复中发布语音记录
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="post_polls_system-input">
+                                    <label>
+                                        文章投票系统状态（允许用户创建投票）
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="post_polls_system" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["post_polls_system"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["post_polls_system"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        请注意，如果您禁用此功能，用户将无法在他们的发布或回复中创建投票
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group" data-an="post_gifs_system-input">
+                                    <label>
+                                        文章GIF系统状态（允许用户导入GIF）
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="post_gifs_system" class="form-control">
+                                            <option value="on" <?php if($cl["config"]["post_gifs_system"] == "on") { echo('selected'); } ?>>
+                                                Enabled
+                                            </option>
+                                            <option value="off" <?php if($cl["config"]["post_gifs_system"] == "off") { echo('selected'); } ?>>
+                                                Disabled
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <small class="info-feedback">
+                                        请注意，如果您禁用此功能，用户将无法在他们的发布或回复中导入GIF
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group no-mb">
+                       		<button data-an="submit-ctrl" type="submit" class="btn btn-primary">
+                                保存更改
+                            </button>
+                        </div>
+                        <input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php echo cl_template('cpanel/assets/toggle_features/scripts/app_master_script'); ?>

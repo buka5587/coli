@@ -1,0 +1,83 @@
+<div class="cp-app-container" data-app="custom-jscss">
+    <div class="current-page-name">
+        <div class="lp">
+            <h1>
+                自定义 JS / CSS
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        管理自定义 JS/CSS code
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="inline-alertbox-wrapper">
+                        <div class="inline-alertbox warning">
+                            <div class="icon">
+                                <?php echo cl_ficon("danger"); ?>
+                            </div>
+                            <div class="alert-message">
+                                <p>
+                                    <strong class="col-red">
+                                        重要！
+                                    </strong>
+                                    <br>
+                                    请注意，下面列出的所有三个文件必须具有文件写入权限。在这种情况下，最好的选择是将文件权限设置为 <b>777</b>
+                                    <br>
+                                    <ol>
+                                        <li>
+                                            themes/default/statics/custom_code/header.js
+                                        </li>
+                                        <li>
+                                            themes/default/statics/custom_code/header.css
+                                        </li>
+                                        <li>
+                                            themes/default/statics/custom_code/footer.js
+                                        </li>
+                                    </ol>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="form" data-an="form">
+                        <div class="form-group" data-an="header_customjs-input">
+                            <label>
+                                页头自定义JavaScript代码
+                            </label>
+                            <div class="form-line">
+                                <textarea class="form-control" rows="15" name="header_customjs" placeholder="Add here your JavaScript Code"><?php echo cl_get_custom_code("headerjs"); ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" data-an="footer_customjs-input">
+                            <label>
+                                页脚自定义JavaScript代码
+                            </label>
+                            <div class="form-line">
+                                <textarea class="form-control" rows="15" name="footer_customjs" placeholder="Add here your JavaScript Code"><?php echo cl_get_custom_code("footerjs"); ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" data-an="header_customcss-input">
+                            <label>
+                                页头自定义CSS代码
+                            </label>
+                            <div class="form-line">
+                                <textarea class="form-control" rows="15" name="header_customcss" placeholder="Add here your CSS Code"><?php echo cl_get_custom_code("headercss"); ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group no-mb">
+                            <button data-an="submit-ctrl" type="submit" class="btn btn-primary">
+                                保存更改
+                            </button>
+                        </div>
+                        <input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php echo cl_template('cpanel/assets/custom_jscss/scripts/app_master_script'); ?>

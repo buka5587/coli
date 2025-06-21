@@ -1,0 +1,37 @@
+<div class="modal popup-ticket-modal" tabindex="-1" role="dialog" data-backdrop="static" data-onclose="remove">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    发布报告详情
+                </h5>
+            </div>
+            <div class="modal-body">
+                <div class="user-info">
+                    <div class="avatar">
+                        <img src="<?php echo($cl['rep_data']['avatar']); ?>" alt="Avatar">
+                    </div>
+                    <div class="uname">
+                        <h5><?php echo($cl['rep_data']['name']); ?></h5>
+                        <a><?php echo($cl['rep_data']['email']); ?></a>
+                    </div>
+                </div>
+                <div class="text-message">
+                    <h5>来自申请人的消息：</h5>
+                    <p>
+                        <?php if (not_empty($cl['rep_data']['comment'])): ?>
+                            <?php echo $cl['rep_data']['comment']; ?>
+                        <?php else: ?>
+                            此用户未为此报告留下评论
+                        <?php endif; ?>
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

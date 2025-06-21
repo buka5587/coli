@@ -1,0 +1,64 @@
+<div class="modal popup-ticket-modal" tabindex="-1" role="dialog" data-backdrop="static" data-onclose="remove">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    提现请求， <?php echo cl_money($cl['req_data']['amount']); ?>
+                </h5>
+            </div>
+            <div class="modal-body">
+                <div class="user-info">
+                    <div class="avatar">
+                        <img src="<?php echo($cl['req_data']['avatar']); ?>" alt="Avatar">
+                    </div>
+                    <div class="uname">
+                        <h5><?php echo($cl['req_data']['full_name']); ?></h5>
+                        <a><?php echo($cl['req_data']['email']); ?></a>
+                    </div>
+                </div>
+
+                <div class="text-message m-b-20">
+                    <h5>要求和消息</h5>
+                    <p>
+                        <?php 
+                            $cl['req_data']['requisites'] = cl_rn2br($cl['req_data']['requisites']);
+                            $cl['req_data']['requisites'] = cl_strip_brs($cl['req_data']['requisites']);
+
+                            echo $cl['req_data']['requisites'];
+                        ?>
+                    </p>
+                </div>
+                <div class="text-message">
+                    <h5>请求详情</h5>
+                    <table class="table table-bordered margin-0">
+                        <tr>
+                            <td>方式</td>
+                            <td>
+                                <b><?php echo($cl['req_data']['method']); ?></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>金额</td>
+                            <td><b><?php echo cl_money($cl['req_data']['amount']); ?></b></td>
+                        </tr>
+                        <tr>
+                            <td>日期</td>
+                            <td><b><?php echo($cl['req_data']['time']); ?></b></td>
+                        </tr>
+                        <tr>
+                            <td>状态</td>
+                            <td>
+                                <span class="badge bg-orange">待处理</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal">
+                    关闭
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="cp-app-container" data-app="delete-spam-accounts">
+    <div class="current-page-name">
+        <div class="lp">
+            <h1>
+                删除垃圾账号
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        删除未确认的用户账号
+                    </h2>
+                </div>
+                <div class="body">
+                    <p>
+                        <b>(<?php echo cl_number($cl["total_accounts"]); ?>)</b> 找到未确认的账号
+                    </p>
+                    <br>
+                    <div class="inline-alertbox-wrapper">
+                        <div class="inline-alertbox info">
+                            <div class="icon">
+                                <?php echo cl_ficon("info"); ?>
+                            </div>
+                            <div class="alert-message">
+                                <p>
+                                    此功能将删除所有在7天内未通过电子邮件中的代码进行确认的过期的用户注册
+                                    <br>
+                                    请注意，此过程可能需要一些时间。请等待过程完成，不要离开页面
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <form class="form" data-an="form">
+                        <div class="form-group no-mb">
+                            <button data-an="submit-ctrl" type="submit" class="btn btn-primary">
+                                删除垃圾账号
+                            </button>
+                        </div>
+                        <input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php echo cl_template('cpanel/assets/delete_spam_accounts/scripts/app_master_script'); ?>

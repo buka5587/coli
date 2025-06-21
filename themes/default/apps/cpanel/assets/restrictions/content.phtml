@@ -1,0 +1,114 @@
+<div class="cp-app-container" data-app="restrictions">
+    <div class="current-page-name">
+        <div class="lp">
+            <h1>
+                用户数据限制
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        管理用户数据限制
+                    </h2>
+                </div>
+                <div class="body">
+                    <form class="form" data-an="form">
+                        <div class="inline-alertbox-wrapper">
+                            <div class="inline-alertbox info">
+                                <div class="icon">
+                                    <?php echo cl_ficon("info"); ?>
+                                </div>
+                                <div class="alert-message">
+                                    <p>
+                                        使用此功能，您可以防止用户使用某些 <b>@usernames</b> 和电子邮件地址。例外是完全用户名，因为对它没有限制。
+                                        <br>
+                                        <br>
+                                        <strong class="col-red">
+                                            重要提示！
+                                        </strong>
+                                        <br>
+                                        请注意，用户名和电子邮件地址不得包含空格或非拉丁字符或其他在用户注册期间不允许的禁止字符
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    	<div class="form-group" data-an="username_restrictions-input">
+                            <label>
+                                用户名限制
+                            </label>
+                            <div class="form-line">
+                                <textarea name="username_restrictions" class="form-control" placeholder="Enter comma-separated restricted usernames. E.g: username1, username2, username3">{%config username_restrictions%}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" data-an="useremail_restrictions-input">
+                            <label>
+                                用户电子邮件限制
+                            </label>
+                            <div class="form-line">
+                                <textarea name="useremail_restrictions" class="form-control" placeholder="Enter comma-separated restricted email addresses. E.g: email_address1@test.com, email_address2@test.com, email_address3@test.com">{%config useremail_restrictions%}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group no-mb">
+                       		<button data-an="submit-ctrl" type="submit" class="btn btn-primary">
+                                保存更改
+                            </button>
+                        </div>
+                        <input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        管理用户数据限制
+                    </h2>
+                </div>
+                <div class="body">
+                    <form class="form" data-an="form">
+                        <div class="inline-alertbox-wrapper">
+                            <div class="inline-alertbox warning">
+                                <div class="icon">
+                                    <?php echo cl_ficon("info"); ?>
+                                </div>
+                                <div class="alert-message">
+                                    <p>
+                                        使用此功能，您可以防止用户使用非二元性别，即保留选项：男性和女性性别，并禁用所有其他选项                                        <br> <br>
+
+                                        您可能需要这个功能，如果 <strike>LGBT</strike> 宣传在您的国家是禁止的，因为这个选项您可能会被处以罚款或法庭审判
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group" data-an="non_binary_gender-input">
+                                    <label>
+                                        允许非二元性别
+                                    </label>
+                                    <div class="form-line form-select">
+                                        <select name="non_binary_gender" class="form-control">
+                                            <option value="on" <?php if($cl['config']['non_binary_gender'] == 'on') { echo('selected'); } ?>>允许</option>
+                                            <option value="off" <?php if($cl['config']['non_binary_gender'] == 'off') { echo('selected'); } ?>>拒绝</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group no-mb">
+                            <button data-an="submit-ctrl" type="submit" class="btn btn-primary">
+                                保存更改
+                            </button>
+                        </div>
+                        <input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php echo cl_template('cpanel/assets/restrictions/scripts/app_master_script'); ?>

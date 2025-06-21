@@ -1,0 +1,189 @@
+<div class="cp-app-container" data-app="invite-users">
+    <div class="current-page-name">
+        <div class="lp">
+            <h1>
+                邀请用户
+            </h1>
+        </div>
+    </div>
+    <div class="card">
+        <div class="header">
+            <h2>
+                创建新的邀请链接
+            </h2>
+        </div>
+        <div class="body">
+            <form class="form" data-an="form">
+                <div class="row align-items-center">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>
+                                过期时间
+                            </label>
+                            <div class="form-line form-select">
+                                <select name="expires_at" class="form-control">
+                                    <option value="1">
+                                        1 day
+                                    </option>
+                                    <option value="3">
+                                        3 days
+                                    </option>
+                                    <option value="7">
+                                        7 days
+                                    </option>
+                                    <option value="15">
+                                        15 days
+                                    </option>
+                                    <option value="30">
+                                        30 days
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>
+                                用户角色（管理员或用户）
+                            </label>
+                            <div class="form-line form-select">
+                                <select name="role" class="form-control">
+                                    <option value="user">
+                                        普通用户
+                                    </option>
+                                    <option value="admin">
+                                        管理员用户
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>
+                                最大使用次数
+                            </label>
+                            <div class="form-line">
+                                <input value="1" name="mnu" type="number" class="form-control" placeholder="E. g. 5">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group no-mb">
+                            <button data-an="submit-ctrl" type="submit" class="btn btn-primary">
+                                创建邀请链接
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="card">
+        <div class="header">
+            <h2>
+                管理用户邀请链接
+            </h2>
+        </div>
+        
+        <div class="body">
+            <div class="inline-alertbox-wrapper">
+                <div class="inline-alertbox info">
+                    <div class="icon">
+                        <?php echo cl_ficon("info"); ?>
+                    </div>
+                    <div class="alert-message">
+                        <p>
+                            请注意，只有当您禁用了用户注册系统时，此功能才有意义
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <table class="table" id="vue-cpanel-user-invites">
+                <thead>
+                    <th>
+                        链接
+                    </th>
+                    <th>
+                        剪贴板
+                    </th>
+                    <th>
+                        用户角色
+                    </th>
+                    <th>
+                        最大使用次数
+                    </th>
+                    <th>
+                        已注册用户数
+                    </th>
+                    <th>
+                        创建时间
+                    </th>
+                    <th>
+                        过期时间
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </thead>
+                <tbody v-if="links.length">
+                    <tr v-for="item_data in links">
+                        <td>
+                            <a v-bind:href="item_data.link">
+                                {{item_data.link_short}}
+                            </a>
+                        </td>
+                        <td>
+                            <span v-bind:data-clipboard-text="item_data.link" class="icon pointer clip-board-copy">
+                                <?php echo cl_ficon("copy"); ?>
+                            </span>
+                        </td>   
+                        <td>
+                            <span v-if="item_data.role == 'admin'" class="badge">
+                                Admin
+                            </span>
+                            <span v-else>
+                                User
+                            </span>
+                        </td>
+                        <td>
+                            <b>{{item_data.mnu}}</b>
+                        </td>
+                        <td>
+                            <span class="badge bg-grey">
+                                <b>{{item_data.registered_users}}</b> users
+                            </span>
+                        </td>
+                        <td>
+                            {{item_data.time}}
+                        </td>
+                        <td>
+                            {{item_data.expire_time}}
+                        </td>
+                        <td>
+                            <span class="icon pointer" v-on:click="delete_link(item_data.id)">
+                                <?php echo cl_ficon("delete"); ?>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody v-else>
+                    <tr>
+                        <td colspan="8">
+                            <div class="empty-table">
+                                <h4>
+                                    未找到链接
+                                </h4>
+                                <p>
+                                    看起来您还没有邀请链接。点击（创建）按钮创建一个新的链接
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<?php echo cl_template('cpanel/assets/invite_users/scripts/app_master_script'); ?>

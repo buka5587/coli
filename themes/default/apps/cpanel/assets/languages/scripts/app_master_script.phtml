@@ -1,0 +1,114 @@
+<script>
+	"use strict";
+
+	$(document).ready(function($) {
+		var _app  = $('[data-app="ui-languages"]');
+		var _form = _app.find('form[data-an="form"]');
+
+		SMC_CPanel.PS = Object({
+			toggle_status: function(e = false, id = false) {
+				$.ajax({
+                    url: '<?php echo cl_link("native_api/cpanel/toggle_lang_status"); ?>',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {stat: $(e).val(), id: id},
+                    beforeSend: function() {
+                    	SMC_CPanel.waitme("show");
+                    }
+                }).done(function(data) {
+                    if (data.status == 200) {
+                    	$(window).reloadPage(10);
+                    }
+                    else{
+                    	SMC_CPanel.errorMSG();
+                    }
+                }).always(function() {
+                	SMC_CPanel.waitme();
+                });
+			},
+			set_default: function(id = false) {
+				$.ajax({
+                    url: '<?php echo cl_link("native_api/cpanel/set_default_lang"); ?>',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {id: id},
+                    beforeSend: function() {
+                    	SMC_CPanel.waitme("show");
+                    }
+                }).done(function(data) {
+                    if (data.status == 200) {
+                        $(window).reloadPage(10);
+                    }
+                    else{
+                    	SMC_CPanel.errorMSG();
+                    }
+                }).always(function() {
+                	SMC_CPanel.waitme();
+                });
+			},
+			delete_lang: function(id = false) {
+				var promise = SMC_CPanel.confirm_action({
+					btn_1: "Cancel",
+					btn_2: "Delete",
+					title: "请确认您的操作！",
+					message: "您确定要删除这种语言吗？请注意，这种语言中的所有翻译文本将被永久删除",
+				});
+
+				promise.done(function() {
+					$.ajax({
+	                    url: '<?php echo cl_link("native_api/cpanel/delete_lang"); ?>',
+	                    type: 'POST',
+	                    dataType: 'json',
+	                    data: {id: id},
+	                    beforeSend: function() {
+	                    	SMC_CPanel.waitme("show");
+	                    }
+	                }).done(function(data) {
+	                    if (data.status == 200) {
+	                        $(window).reloadPage(10);
+	                    }
+	                    else{
+	                    	SMC_CPanel.errorMSG();
+	                    }
+	                }).always(function() {
+	                	SMC_CPanel.waitme();
+	                });
+	            });
+
+	            promise.fail(function() {
+		            $("div.confirm-actions-modal").modal("hide");
+		        });
+			},
+			delete_lang_restriction: function() {
+				cl_bs_notify("您不能删除这种语言，因为它是ColibriSM系统的母语。但是，如果您不希望它在用户语言列表中，您可以禁用它", 8000, "危险");
+			}
+		});
+
+		_form.ajaxForm({
+			url: '<?php echo cl_link("native_api/cpanel/add_new_lanuage"); ?>',
+			type: 'POST',
+			dataType: 'json',
+			beforeSend: function() {
+				_form.find('small.invalid-feedback').remove();
+				_form.find('[data-an="submit-ctrl"]').attr('disabled', 'true').text("Please wait");
+
+				SMC_CPanel.waitme("show");
+			},
+			success: function(data) {
+				if (data.status == 200) {
+					cl_bs_notify("New language has been successfully added. Please wait....", 3000);
+
+					$(window).reloadPage(3500);
+				}
+				else {
+					SMC_CPanel.errorMSG();
+				}
+			},
+			complete: function() {
+				_form.find('[data-an="submit-ctrl"]').removeAttr('disabled').text("Save changes");
+
+				SMC_CPanel.waitme();
+			}
+		});
+	});
+</script>

@@ -1,0 +1,78 @@
+<div class="cp-app-container" data-app="sitemap">
+    <div class="current-page-name">
+        <div class="lp">
+            <h1>
+                Sitemap
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        生成 sitemap
+                    </h2>
+                </div>
+                <div class="body">
+                    <form class="form" data-an="form">
+                        <div class="inline-alertbox-wrapper">
+                            <div class="inline-alertbox warning">
+                                <div class="icon">
+                                    <?php echo cl_ficon("warning"); ?>
+                                </div>
+                                <div class="alert-message">
+                                    <p>
+                                        请注意，创建站点地图的过程可能需要几分钟甚至更长时间，这取决于您网站上的内容量，因此点击更新站点地图按钮后，请等待过程完成，不要离开页面，否则，过程将失败！
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline-alertbox-wrapper">
+                            <div class="inline-alertbox info">
+                                <div class="icon">
+                                    <?php echo cl_ficon("info"); ?>
+                                </div>
+                                <div class="alert-message">
+                                    <p>
+                                        站点地图是通过将CML文件分成小块，并通过一个文件（即索引文件）连接它们来创建的，您在向搜索引擎注册您的网站时需要指定这个文件。（将您的站点地图提交给谷歌等。）
+                                    </p>
+                                    <hr>
+                                    <p>
+                                        Here is the url to this file: <a href="<?php echo cl_link('sitemap/sitemap-index.xml'); ?>" target="_blank"><?php echo cl_link('sitemap/sitemap-index.xml'); ?></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?php if (not_empty($cl['config']['sitemap_update'])): ?>
+                                <h5>
+                                    <span>
+                                        Last sitemap update
+                                    </span>
+                                    <time data-an="last-sitemap-date">
+                                        (<?php echo date('d F, Y - h:m', $cl['config']['sitemap_update']); ?>)
+                                    </time>    
+                                </h5>
+                            <?php else: ?>
+                                <h5>
+                                    <span>
+                                        Last sitemap update
+                                    </span>
+                                    <time data-an="last-sitemap-date">(00/00/0000 - 00:00)</time>
+                                </h5>
+                            <?php endif; ?>
+                        </div>
+                        <div class="form-group no-mb">
+                            <button data-an="submit-ctrl" type="submit" class="btn btn-primary">
+                                Update sitemap
+                            </button>
+                        </div>
+                        <input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>" name="hash">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php echo cl_template('cpanel/assets/sitemap/scripts/app_master_script'); ?>
