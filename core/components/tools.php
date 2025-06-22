@@ -247,13 +247,13 @@ function cl_get_media($media = '', $is_upload = false){
     
     if ($config['as3_storage'] == 'on') {
         $as3_bucket = $config['as3_bucket_name'];
-        $media_url  = cl_strf("https://%s.cn-sy1.rains3.com/%s", $as3_bucket, $media);
+        $media_url  = cl_strf("https://%s.s3.amazonaws.com/%s", $as3_bucket, $media);
         return $media_url;
     }
     elseif ($config['ws3_storage'] == 'on') {
-        $ws3_reg = $config['ws3_bucket_region'];
+        $ws3_endpoint = $config['ws3_endpoint_url'];
         $ws3_bucket = $config['ws3_bucket_name'];
-        $media_url  = cl_strf("https://cn-sy1.%srains3.com/%s/%s", $ws3_reg, $ws3_bucket, $media);
+        $media_url  = cl_strf("%s/%s/%s", $ws3_endpoint, $ws3_bucket, $media);
         return $media_url;
     }
     elseif ($config['idrive3_storage'] == 'on') {
@@ -275,7 +275,7 @@ function cl_get_media_placeholder($media = ""){
     
     if ($config['as3_storage'] == "on") {
         $as3_bucket = $config['as3_bucket_name'];
-        $media_url  = cl_strf("https://%s.cn-sy1.rains3.com/upload/default/%s.png", $as3_bucket, $media);
+        $media_url  = cl_strf("https://%s.s3.amazonaws.com/upload/default/%s.png", $as3_bucket, $media);
         return $media_url;
     }
     else {
@@ -661,74 +661,72 @@ function cl_upload($data = array()) {
     }
 }
 
-//以下是成功上传代码
 function cl_upload2s3($filename = null, $del_localfile = "Y") {
     global $cl;
-
+    
     if ($cl['config']['as3_storage'] == 'off') {
         return false;
     }
-
-    // 验证配置参数
-    // 转换路径为 Linux 兼容格式
-    $file_path = str_replace('\\', '/', cl_full_path($filename));
-    
-    // 检查文件是否存在
-    if (!file_exists($file_path) || !is_readable($file_path)) {
-        error_log("S3 Upload Error: File not found or unreadable - " . $file_path);
-        return false;
-    }
-
-    try {
-        // 引入 AWS SDK
-        $sdk_autoload = str_replace('\\', '/', cl_full_path("core/libs/s3_sdk/vendor/autoload.php"));
-        if (!file_exists($sdk_autoload)) {
-            error_log("S3 Upload Error: AWS SDK Autoloader missing - " . $sdk_autoload);
+    else {
+        if (empty($cl['config']['as3_api_key'])) {
             return false;
         }
-        include_once($sdk_autoload);
 
-        // 配置 S3 客户端
-        $amazon_s3 = new \Aws\S3\S3Client([
-            'version'     => 'latest',
-            'region'      => $cl['config']['as3_bucket_region'],
-            'endpoint'    => 'https://cn-sy1.rains3.com', // 你的 S3 端点
-            'credentials' => [
-                'key'    => $cl['config']['as3_api_key'],
-                'secret' => $cl['config']['as3_api_secret_key']
-            ],
-            'use_path_style_endpoint' => true,
-            'http' => [
-                'verify' => false // 禁用 SSL 验证
-            ]
-        ]);
-
-        // 上传文件
-        $body = fopen($file_path, 'r');
-        $up_aws_object = $amazon_s3->putObject([
-            'Bucket'       => $cl['config']['as3_bucket_name'],
-            'Key'          => $filename,
-            'Body'         => $body,
-            'ACL'          => 'public-read',
-            'CacheControl' => 'max-age=3153600'
-        ]);
-        fclose($body);
-
-        // 删除本地文件
-        if ($del_localfile == "Y") {
-            cl_delete_loc_media($filename);
+        else if(empty($cl['config']['as3_api_secret_key'])) {
+            return false;
         }
 
-        return true;
-    } catch (\Aws\S3\Exception\S3Exception $e) {
-        error_log("S3 Upload Error: " . $e->getMessage());
-        return false;
-    } catch (Exception $e) {
-        error_log("General Error: " . $e->getMessage());
-        return false;
-    }
+        else if(empty($cl['config']['as3_bucket_region'])) {
+            return false;
+        }
+
+        else if(empty($cl['config']['as3_bucket_name'])) {
+            return false;
+        }
+
+        else {
+            try {
+
+                include_once(cl_full_path("core/libs/s3_sdk/vendor/autoload.php"));
+
+                $amazon_s3        = new \Aws\S3\S3Client(array(
+                    'version'     => 'latest',
+                    'region'      => $cl['config']['as3_bucket_region'],
+                    'credentials' => array(
+                        'key'     => $cl['config']['as3_api_key'],
+                        'secret'  => $cl['config']['as3_api_secret_key']
+                    )
+                ));
+
+                $up_aws_object     = $amazon_s3->putObject(array(
+                    'Bucket'       => $cl['config']['as3_bucket_name'],
+                    'Key'          => $filename,
+                    'Body'         => fopen($filename, 'r+'),
+                    'ACL'          => 'public-read',
+                    'CacheControl' => 'max-age=3153600'
+                ));
+
+                if ($del_localfile == "Y") {
+                    if ($amazon_s3->doesObjectExist($cl['config']['as3_bucket_name'], $filename)) {
+                        cl_delete_loc_media($filename);
+                    }
+                }
+
+                return true;
+            } 
+            catch (Exception $e) {
+                return false;
+            }
+        }
+    } 
 }
 
+/**
+ * 上传文件到S3兼容存储
+ * @param string|null $filename 本地文件路径
+ * @param string $del_localfile 是否删除本地文件(Y/N)
+ * @return bool 上传是否成功
+ */
 function cl_upload2wasabi_s3($filename = null, $del_localfile = "Y") {
     global $cl;
 
@@ -745,11 +743,11 @@ function cl_upload2wasabi_s3($filename = null, $del_localfile = "Y") {
             return false;
         }
 
-        else if(empty($cl['config']['ws3_bucket_region'])) {
+        else if(empty($cl['config']['ws3_bucket_name'])) {
             return false;
         }
 
-        else if(empty($cl['config']['ws3_bucket_name'])) {
+        else if(empty($cl['config']['ws3_endpoint_url'])) {
             return false;
         }
 
@@ -761,12 +759,16 @@ function cl_upload2wasabi_s3($filename = null, $del_localfile = "Y") {
 
                 $amazon_s3        = new \Aws\S3\S3Client(array(
                     'version'     => 'latest',
-                    'endpoint' => 'https://cn-sy1.'.$cl['config']['ws3_bucket_region'].'rains3.com',
+                    'endpoint' => $cl['config']['ws3_endpoint_url'],
                     'region'      => $cl['config']['ws3_bucket_region'],
                     'credentials' => array(
                         'key'     => $cl['config']['ws3_api_key'],
                         'secret'  => $cl['config']['ws3_api_secret_key']
-                    )
+                    ),
+                    'use_path_style_endpoint' => true,
+                    'http' => [
+                        'verify' => false // 禁用 SSL 验证,生产环境禁用
+                    ]
                 ));
 
                 $file_res = fopen($filename, 'r+');
@@ -871,63 +873,61 @@ function cl_delete_from_s3($filename = null) {
     if ($cl['config']['as3_storage'] == 'off') {
         return false;
     }
-
-    // 验证必要配置参数
-    $required_keys = ['as3_api_key', 'as3_api_secret_key', 'as3_bucket_region', 'as3_bucket_name'];
-    foreach ($required_keys as $key) {
-        if (empty($cl['config'][$key])) {
-            error_log("S3 Config missing: $key");
+    else {
+        if (empty($cl['config']['as3_api_key'])) {
             return false;
         }
-    }
 
-    try {
-        // 引入 AWS SDK
-        $sdk_autoload = cl_full_path("core/libs/s3_sdk/vendor/autoload.php");
-        if (!file_exists($sdk_autoload)) {
-            error_log("AWS SDK Autoloader missing: $sdk_autoload");
+        else if(empty($cl['config']['as3_api_secret_key'])) {
             return false;
         }
-        include_once($sdk_autoload);
 
-        // 配置 S3 客户端
-        $amazon_s3 = new \Aws\S3\S3Client([
-            'version'     => 'latest',
-            'region'      => $cl['config']['as3_bucket_region'],
-            'endpoint'    => 'https://cn-sy1.rains3.com', // 你的 S3 端点
-            'credentials' => [
-                'key'    => $cl['config']['as3_api_key'],
-                'secret' => $cl['config']['as3_api_secret_key']
-            ],
-            'use_path_style_endpoint' => true,
-            'http' => [
-                'verify' => false // 禁用 SSL 验证
-            ]
-        ]);
-
-        // 删除对象
-        $rm_aws_object = $amazon_s3->deleteObject([
-            'Bucket' => $cl['config']['as3_bucket_name'],
-            'Key'    => $filename
-        ]);
-
-        // 验证对象是否已删除
-        if ($amazon_s3->doesObjectExist($cl['config']['as3_bucket_name'], $filename) != true) {
-            return true;
+        else if(empty($cl['config']['as3_bucket_region'])) {
+            return false;
         }
 
-        return false;
-    } 
-    catch (\Aws\S3\Exception\S3Exception $e) {
-        error_log("S3 Delete Error: " . $e->getMessage());
-        return false;
-    }
-    catch (Exception $e) {
-        error_log("General Error: " . $e->getMessage());
-        return false;
+        else if(empty($cl['config']['as3_bucket_name'])) {
+            return false;
+        }
+
+        else{
+            try {
+                include_once(cl_full_path("core/libs/s3_sdk/vendor/autoload.php"));
+
+                $amazon_s3        = new \Aws\S3\S3Client(array(
+                    'version'     => 'latest',
+                    'region'      => $cl['config']['as3_bucket_region'],
+                    'credentials' => array(
+                        'key'     => $cl['config']['as3_api_key'],
+                        'secret'  => $cl['config']['as3_api_secret_key']
+                    )
+                ));
+
+                $rm_aws_object = $amazon_s3->deleteObject(array(
+                    'Bucket'   => $cl['config']['as3_bucket_name'],
+                    'Key'      => $filename
+                ));
+
+                if ($amazon_s3->doesObjectExist($cl['config']['as3_bucket_name'], $filename) != true) {
+                    return true;
+                }
+
+                else {
+                    return false;
+                }
+            } 
+            catch (Exception $e) {
+                return false;
+            }
+        }
     }
 }
 
+/**
+ * 从S3兼容存储删除文件
+ * @param string|null $filename 要删除的文件路径
+ * @return bool 删除是否成功
+ */
 function cl_delete_from_wasabi_s3($filename = null) {
     global $cl;
 
@@ -951,6 +951,10 @@ function cl_delete_from_wasabi_s3($filename = null) {
             return false;
         }
 
+        else if(empty($cl['config']['ws3_endpoint_url'])) {
+            return false;
+        }
+
         else {
             try {
                 include_once(cl_full_path("core/libs/s3_sdk/vendor/autoload.php"));
@@ -958,11 +962,15 @@ function cl_delete_from_wasabi_s3($filename = null) {
                 $amazon_s3        = new \Aws\S3\S3Client(array(
                     'version'     => 'latest',
                     'region'      => $cl['config']['ws3_bucket_region'],
-                    'endpoint'    => 'https://cn-sy1.'.$cl['config']['ws3_bucket_region'].'rains3.com',
+                    'endpoint'    => $cl['config']['ws3_endpoint_url'],
                     'credentials' => array(
                         'key'     => $cl['config']['ws3_api_key'],
                         'secret'  => $cl['config']['ws3_api_secret_key']
-                    )
+                    ),
+                    'use_path_style_endpoint' => true,
+                    'http' => [
+                        'verify' => false // 禁用 SSL 验证,生产环境禁用
+                    ]
                 ));
 
                 $rm_aws_object = $amazon_s3->deleteObject(array(

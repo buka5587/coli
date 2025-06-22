@@ -908,7 +908,7 @@
 {%end%}
 
 {%begin%}
-  INSERT INTO `cl_configs` (`id`, `title`, `name`, `value`, `regex`) VALUES (NULL, 'Wasaba S3 storage', 'ws3_storage', 'off', '/^(on|off)$/'), (NULL, 'WS3 bucket name', 'ws3_bucket_name', '', ''), (NULL, 'Wasabi S3 API key', 'ws3_api_key', '', ''), (NULL, 'Wasabi S3 API secret key', 'ws3_api_secret_key', '', ''), (NULL, 'WS3 bucket region', 'ws3_bucket_region', 'us-west-1', '');
+  INSERT INTO `cl_configs` (`id`, `title`, `name`, `value`, `regex`) VALUES (NULL, 'Wasaba S3 storage', 'ws3_storage', 'off', '/^(on|off)$/'), (NULL, 'WS3 bucket name', 'ws3_bucket_name', '', ''), (NULL, 'Wasabi S3 API key', 'ws3_api_key', '', ''), (NULL, 'Wasabi S3 API secret key', 'ws3_api_secret_key', '', ''), (NULL, 'WS3 bucket region', 'ws3_bucket_region', 'us-west-1', ''), (NULL, 'S3兼容存储自定义端点', 'ws3_endpoint_url', '', '');
 {%end%}
 
 {%begin%}

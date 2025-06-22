@@ -2,14 +2,15 @@
     <div class="current-page-name">
         <div class="lp">
             <h1>
-                Wasabi S3
+                S3兼容存储
             </h1>
         </div>
     </div>
     <div class="card">
         <div class="header">
             <h2>
-                Wasabi S3 Storage API settings
+                S3兼容存储 API 设置
+            <p class="text-muted">配置兼容S3协议的云存储服务，如AWS S3、阿里云OSS、腾讯云COS等</p>
             </h2>
         </div>
         <div class="body">
@@ -18,7 +19,7 @@
                     <div class="col-md-6">
                         <div class="form-group" data-an="ws3_storage-input">
                             <label>
-                                Wasabi S3 storage
+                                S3兼容存储 storage
                             </label>
                             <div class="form-line form-select">
                                 <select name="ws3_storage" class="form-control">
@@ -43,7 +44,7 @@
                     <div class="col-md-6">
                         <div class="form-group" data-an="ws3_api_key-input">
                             <label>
-                                Wasabi S3 API key
+                                S3兼容存储 API key
                             </label>
                             <div class="form-line">
                                 <input value="{%config ws3_api_key%}" name="ws3_api_key" type="text" class="form-control" placeholder="Enter Wasabi S3 API key">
@@ -53,7 +54,7 @@
                     <div class="col-md-6">
                         <div class="form-group" data-an="ws3_api_secret_key-input">
                             <label>
-                                Wasabi S3 API secret key
+                                S3兼容存储 API secret key
                             </label>
                             <div class="form-line">
                                 <input value="{%config ws3_api_secret_key%}" name="ws3_api_secret_key" type="text" class="form-control" placeholder="Enter Wasabi S3 API secret key">
@@ -65,7 +66,7 @@
                     <div class="col-md-12">
                         <div class="form-group" data-an="ws3_bucket_region-input">
                             <label>
-                                Wasabi S3 bucket region
+                                S3兼容存储 bucket region
                             </label>
                             <div class="form-line form-select">
                                 <select name="ws3_bucket_region" data-size="5" class="form-control">
@@ -89,7 +90,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group no-mb">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group" data-an="ws3_custom_endpoint-input">
+                    <label>
+                        自定义端点 URL <small class="text-muted">(可选，适用于非AWS S3服务，如https://oss-cn-beijing.aliyuncs.com)</small>
+                    </label>
+                    <div class="form-line">
+                        <input value="{%config ws3_endpoint_url%}" name="ws3_endpoint_url" type="text" class="form-control" placeholder="输入S3兼容服务的自定义端点URL">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group no-mb">
                     <button data-an="submit-ctrl" type="submit" class="btn btn-primary">
                         Save changes
                     </button>
