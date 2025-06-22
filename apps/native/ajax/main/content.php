@@ -191,9 +191,9 @@ else if ($action == 'upload_post_video' && $cl["config"]["post_videos_system"] =
                                 }
 
                                 else if ($cl['config']['ws3_storage'] == 'on') {
-                                    cl_upload2wasabi_s3($file_upload['filename']);
+                                    cl_upload2compatible_s3($file_upload['filename']);
 
-                                    cl_upload2wasabi_s3($thumb_path);
+                                    cl_upload2compatible_s3($thumb_path);
                                 }
                             }
                         }

@@ -630,10 +630,10 @@ function cl_upload($data = array()) {
 
             if ($aws_uploadfile == "Y") {
                 try {
-                    cl_upload2wasabi_s3($filename);
+                    cl_upload2compatible_s3($filename);
 
                     if (not_empty($result['cropped'])) {
-                        cl_upload2wasabi_s3($result['cropped']);
+                        cl_upload2compatible_s3($result['cropped']);
                     }
                 } catch (Exception $e) { /* pass */ }
             }
@@ -727,7 +727,7 @@ function cl_upload2s3($filename = null, $del_localfile = "Y") {
  * @param string $del_localfile 是否删除本地文件(Y/N)
  * @return bool 上传是否成功
  */
-function cl_upload2wasabi_s3($filename = null, $del_localfile = "Y") {
+function cl_upload2compatible_s3($filename = null, $del_localfile = "Y") {
     global $cl;
 
 
@@ -928,7 +928,7 @@ function cl_delete_from_s3($filename = null) {
  * @param string|null $filename 要删除的文件路径
  * @return bool 删除是否成功
  */
-function cl_delete_from_wasabi_s3($filename = null) {
+function cl_delete_from_compatible_s3($filename = null) {
     global $cl;
 
     if ($cl['config']['ws3_storage'] == 'off') {
@@ -1154,7 +1154,7 @@ function cl_delete_media($path = null) {
         cl_delete_from_s3($path);
     }
     else if ($cl['config']['ws3_storage'] == 'on') {
-        cl_delete_from_wasabi_s3($path);
+        cl_delete_from_compatible_s3($path);
     }
     else if ($cl['config']['idrive3_storage'] == 'on') {
         cl_delete_from_idrive_s3($path);

@@ -1,0 +1,2 @@
+cl_upload2wasabi_s3     -   cl_upload2compatible_s3
+cl_delete_from_wasabi_s3    -   cl_delete_from_compatible_s3
