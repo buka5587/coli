@@ -1,71 +1,71 @@
 <div class="content__inner">
-    <h2>Delete post media</h2>
+    <h2>删除帖子媒体</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/delete_post_media"); ?>)</strong> API endpoint for deleteing post multimedia files
+        请使用此 <strong>(<?php echo cl_link("mobile_api/delete_post_media"); ?>)</strong> API端点删除帖子多媒体文件
     </p>
     <br>
-    <h4 class="table-title">Post parameters</h4>
+    <h4 class="table-title">POST参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>session_id</td>
-                <td>​Access token ID</td>
+                <td>访问令牌ID</td>
                 <td>
-                    E.g. de25cc16eb00960f076...
+                    例如: de25cc16eb00960f076...
                 </td>
             </tr>
             <tr>
                 <td>type</td>
-                <td>​Media file type (Image/Video)</td>
+                <td>媒体文件类型 (Image/Video)</td>
                 <td>
-                    E.g. image
+                    例如: image
                 </td>
             </tr>
             <tr>
                 <td>media_id</td>
-                <td>​Media file ID</td>
+                <td>媒体文件ID</td>
                 <td>
-                    E.g. 45
+                    例如: 45
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 200,
         "data": [],
-        "message": "Media deleted successfully"
+        "message": "媒体删除成功"
     }
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 401,
         "data": [],
-        "message": "Unauthorized Access"
+        "message": "未授权访问"
     }
 
     {
     	"code": 400,
-    	"message": "Media file type is missing or invalid",
+    	"message": "媒体文件类型缺失或无效",
     	"data": []
     }
 
     {
         "code": 500,
-        "message": "An error occurred while processing your request. Please try again later.",
+        "message": "处理您的请求时发生错误。请稍后再试。",
         "data": []
     }
     </code></pre>

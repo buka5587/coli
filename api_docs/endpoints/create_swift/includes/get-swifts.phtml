@@ -1,32 +1,32 @@
 <div class="content__inner">
-    <h2>Get my swifts list</h2>
+    <h2>获取我的动态列表</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/get_swifts"); ?>)</strong> API endpoint for fetching user swifts list
+        请使用此 <strong>(<?php echo cl_link("mobile_api/get_swifts"); ?>)</strong> API端点获取用户动态列表
     </p>
     <p>
-        This endpoint will allow you to get all active swifts of the logged in user
+        此端点将允许您获取登录用户的所有活跃动态
     </p>
     <br>
-    <h4 class="table-title">GET parameters</h4>
+    <h4 class="table-title">GET参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>session_id</td>
-                <td>​Access token ID</td>
+                <td>访问令牌ID</td>
                 <td>
-                    E.g. de25cc16eb00960f076...
+                    例如: de25cc16eb00960f076...
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
@@ -49,7 +49,7 @@
                                 "avatar": "http://colibri.loc/upload/avatars/xx/xx/ZyoImsndzRPftd1UbMW5_24_3126....e6_thumbnail_512x512.jpg",
                                 "name": "Admin O'user",
                                 "url": "http://colibri.loc/@testuser",
-                                "time": "24 seconds ago"
+                                "time": "24秒前"
                             }
                         ],
                         "time": "19:24",
@@ -70,24 +70,24 @@
                 "has_unseen": false
             }
         ],
-        "message": "Swifts fetched successfully"
+        "message": "动态获取成功"
     }
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 401,
         "data": [],
-        "message": "Unauthorized Access"
+        "message": "未授权访问"
     }
 
     {
         "code": 404,
         "data": [],
-        "message": "No swifts available yet"
+        "message": "暂无动态可用"
     }
     </code></pre>
         </div>

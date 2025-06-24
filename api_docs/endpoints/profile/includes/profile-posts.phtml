@@ -1,62 +1,62 @@
 <div class="content__inner">
-    <h2>Fetch profile posts</h2>
+    <h2>获取用户资料帖子</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/profile_posts"); ?>)</strong> API to access user profile posts fetching endpoint
+        请使用此 <strong>(<?php echo cl_link("mobile_api/profile_posts"); ?>)</strong> API访问用户资料帖子获取端点
     </p>
     <br>
-    <h4 class="table-title">Get parameters</h4>
+    <h4 class="table-title">GET参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>user_id</td>
-                <td>Profile user ID</td>
+                <td>用户资料ID</td>
                 <td>
-                    In order to get information about the profile, you must send a valid ID
+                    为了获取资料信息，您必须发送有效的ID
                 </td>
             </tr>
             <tr>
                 <td>type</td>
-                <td>Profile posts type (posts/media/liked)</td>
+                <td>资料帖子类型 (posts/media/liked)</td>
                 <td>
-                    E.g. `posts` in order to get user publications
+                    例如: `posts` 用于获取用户发布内容
                 </td>
             </tr>
             <tr>
                 <td>session_id</td>
-                <td>User auth token (Optional)</td>
+                <td>用户认证令牌（可选）</td>
                 <td>
-                    In this case, authorization is not required, but it is desirable to determine whether you are subscribed to this profile or not, blocked or not, etc.
+                    在这种情况下，不需要授权，但最好确定您是否订阅了此资料，是否被阻止等。
                 </td>
             </tr>
             <tr>
                 <td>offset</td>
-                <td>Last post offset ID</td>
+                <td>最后帖子偏移ID</td>
                 <td>
-                    This is only needed when loading posts of the pagination system.
+                    仅在加载分页系统的帖子时需要。
                 </td>
             </tr>
             <tr>
                 <td>page_size</td>
-                <td>​Total post limit for each request</td>
+                <td>每次请求的帖子总数限制</td>
                 <td>
-                    Recommended: 20
+                    推荐: 20
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
 <pre><code class="json">{
     "code": 200,
-    "message": "Posts fetched successfully",
+    "message": "帖子获取成功",
     "data": {
         "posts": [
             {
@@ -108,18 +108,18 @@
 }</code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
 <pre><code class="json">{
     "code": 400,
-    "message": "User ID is missing or invalid",
+    "message": "用户ID缺失或无效",
     "data": []
 }
 
 {
     "code": 400,
-    "message": "User ID is missing or invalid",
+    "message": "用户ID缺失或无效",
     "data": []
 }
 </code></pre>

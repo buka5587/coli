@@ -1,55 +1,58 @@
 <div class="content__inner">
-    <h2>Reset user password</h2>
+    <h2>重置用户密码</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/resetpassword"); ?>)</strong> API to access user password recovery endpoint
+        请使用此 <strong>(<?php echo cl_link("mobile_api/resetpassword"); ?>)</strong> API访问用户密码恢复端点
     </p>
     <br>
-    <h4 class="table-title">Post parameters</h4>
+    <h4 class="table-title">POST参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>email</td>
-                <td>User email address</td>
+                <td>用户电子邮箱地址</td>
                 <td>
-                    E.g. testuser@gmail.com​
+                    例如: testuser@gmail.com​
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
-    <pre><code class="json">{
-        "code": 200,
-        "message": "Check your email for resetting your password",
-        "data":[]
-    }
+    <pre><code class="json">
+{
+    "code": 200,
+    "message": "请查收重置密码的邮件",
+    "data":[]
+}
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
-    <pre><code class="json">{
-        "code": 411,
-        "message": "Email address is unknown"
-    }
+    <pre><code class="json">
+{
+    "code": 411,
+    "message": "电子邮箱地址不存在"
+}
     </code></pre>
         </div>
     </div>
     <div class="code-holder">
         <div class="code-holder-inner">
-    <pre><code class="json">{
-        "code": 411,
-        "message": "Email address is not valid"
-    }
+    <pre><code class="json">
+{
+    "code": 411,
+    "message": "电子邮箱地址无效"
+}
     </code></pre>
         </div>
     </div>

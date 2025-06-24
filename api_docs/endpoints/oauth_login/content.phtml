@@ -1,48 +1,48 @@
 <div class="content__inner">
-    <h2>Social login</h2>
+    <h2>社交登录</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/oauth"); ?>)</strong> API to access user social (oAuth2 API) login endpoint
+        请使用此 <strong>(<?php echo cl_link("mobile_api/oauth"); ?>)</strong> API访问用户社交（oAuth2 API）登录端点
     </p>
     <br>
-    <h4 class="table-title">Post parameters</h4>
+    <h4 class="table-title">POST参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>access_token</td>
-                <td>API access token</td>
+                <td>API访问令牌</td>
                 <td>
-                    E.g. ya29.a0AfH6SMBPzaEI2NaZyo_sui...
+                    例如: ya29.a0AfH6SMBPzaEI2NaZyo_sui...
                 </td>
             </tr>
             <tr>
                 <td>type</td>
-                <td>API provider name</td>
+                <td>API提供商名称</td>
                 <td>
-                    E.g. `facebook` or `google`
+                    例如: `facebook` 或 `google`
                 </td>
             </tr>
             <tr>
                 <td>device_type</td>
-                <td>Client device type</td>
+                <td>客户端设备类型</td>
                 <td>
-                    ios/android (Default is android)
+                    ios/android（默认为android）
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 200,
-        "message": "User logged in successfully",
+        "message": "用户登录成功",
         "data": {
             "id": 7,
             "first_name": "Dan",
@@ -53,7 +53,7 @@
             "website": "",
             "about_you": "",
             "gender": "M",
-            "country": "United States",
+            "country": "美国",
             "post_count": 4045,
             "last_post": 0,
             "last_ad": 0,
@@ -63,7 +63,7 @@
             "wallet": "323.56",
             "ip_address": "127.0.0.1",
             "last_active": "1601382349",
-            "member_since": "Jul 2020",
+            "member_since": "2020年7月",
             "profile_privacy": "followers"
         },
         "auth": {
@@ -75,12 +75,12 @@
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 402,
-        "message": "Access token is invalid or missing",
+        "message": "访问令牌无效或缺失",
         "data":[],
         "error": {
             "error": "invalid_request",
@@ -90,14 +90,14 @@
 
     {
         "code": 400,
-        "message": "oAuth provider type is missing or invalid",
+        "message": "oAuth提供商类型缺失或无效",
         "data": []
     }
 
 
     {
         "code": 500,
-        "message": "API Error – API unavailable",
+        "message": "API错误 - API不可用",
         "data": []
     }
     </code></pre>

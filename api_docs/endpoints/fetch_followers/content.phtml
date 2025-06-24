@@ -1,55 +1,55 @@
 <div class="content__inner">
-    <h2>Fetch followers of an account</h2>
+    <h2>获取账户的关注者</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/fetch_followers"); ?>) API for accessing endpoint of user (followers) list</strong> 
+        请使用此 <strong>(<?php echo cl_link("mobile_api/fetch_followers"); ?>) API访问用户关注者列表端点</strong> 
     </p>
     <br>
-    <h4 class="table-title">Get parameters</h4>
+    <h4 class="table-title">GET参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>offset</td>
-                <td>Last user offset ID</td>
+                <td>最后用户偏移ID</td>
                 <td>
-                    This is only needed when loading users of the pagination system.
+                    仅在加载分页系统的用户时需要。
                 </td>
             </tr>
             <tr>
                 <td>session_id</td>
-                <td>​Access token ID (Optional)</td>
+                <td>访问令牌ID（可选）</td>
                 <td>
-                    E.g. de25cc16eb00960f076...
+                    例如: de25cc16eb00960f076...
                 </td>
             </tr>
             <tr>
                 <td>user_id</td>
-                <td>​User int ID</td>
+                <td>用户整数ID</td>
                 <td>
-                    E.g. 12
+                    例如: 12
                 </td>
             </tr>
             <tr>
                 <td>page_size</td>
-                <td>​Total users limit for each request</td>
+                <td>每次请求的用户总数限制</td>
                 <td>
-                    Recommended: 20
+                    推荐: 20
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 200,
-        "message": "Followers fetched successfully",
+        "message": "关注者获取成功",
         "data": [
             {
                 "offset_id": 35,
@@ -58,13 +58,13 @@
                 "followers": 0,
                 "posts": 1,
                 "avatar": "http://colibri.loc/upload/avatars/xxxx/xxxx/rddNMSoS6S7cEgHO49Ch_20_456548..8_thumbnail_512x512.jpg",
-                "last_active": "21 Jun, 21 01:06 PM",
+                "last_active": "2021年6月21日 下午01:06",
                 "username": "@john_smith",
                 "fname": "John",
                 "lname": "Smith",
                 "email": "john_smith@gmail.com",
                 "verified": "0",
-                "follow_privacy": "approved",
+                "follow_privacy": "已批准",
                 "name": "John Smith",
                 "url": "http://colibri.loc/@john_smith",
                 "is_following": false,
@@ -77,24 +77,24 @@
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
-        "message": "No data found",
+        "message": "未找到数据",
         "code": 204,
         "data": []
     }
 
     {
         "code": 404,
-        "message": "User with this ID does not exist",
+        "message": "此ID的用户不存在",
         "data": []
     }
 
     {
         "code": 400,
-        "message": "This profile data is not available for viewing",
+        "message": "此个人资料数据不可查看",
         "data": []
     }
     </code></pre>

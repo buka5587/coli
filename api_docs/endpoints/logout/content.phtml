@@ -1,46 +1,46 @@
 <div class="content__inner">
-    <h2>Logout user</h2>
+    <h2>用户登出</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/logout"); ?>)</strong> API for accessing user logouting endpoint
+        请使用此 <strong>(<?php echo cl_link("mobile_api/logout"); ?>)</strong> API访问用户登出端点
     </p>
     <br>
-    <h4 class="table-title">Post parameters</h4>
+    <h4 class="table-title">POST参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>session_id</td>
-                <td>​Access token ID</td>
+                <td>访问令牌ID</td>
                 <td>
-                    E.g. de25cc16eb00960f076...
+                    例如: de25cc16eb00960f076...
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 200,
-        "message": "Signout successful",
+        "message": "登出成功",
         "data": []
     }
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 401,
         "data": [],
-        "message": "Unauthorized Access"
+        "message": "未授权访问"
     }
     </code></pre>
         </div>

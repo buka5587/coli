@@ -1,52 +1,52 @@
 <div class="content__inner">
-	<h2>Fetch thread data</h2>
+	<h2>获取帖子数据</h2>
 	<p>
-	    Please use this <strong>(<?php echo cl_link("mobile_api/thread_data"); ?>)</strong> API for accessing endpoint of post thread data
+	    请使用此 <strong>(<?php echo cl_link("mobile_api/thread_data"); ?>)</strong> API访问帖子线程数据端点
 	</p>
 	<h3>
-		Description of the data structure
+		数据结构说明
 	</h3>
 	<br>
 
 	<p>
-		1. The `post` variable contains the post data of the thread (The main post on the thread page)
+		1. `post`变量包含线程的帖子数据（线程页面上的主帖子）
 	</p>
 	<p>
-		2. The variable `next` contains the responses to the thread (Each post data in this array can also contain `replys` variable with first few replys to it)
+		2. `next`变量包含对线程的回复（此数组中的每个帖子数据也可以包含`replys`变量，其中包含对其的前几条回复）
 	</p>
 	<p>
-		3. A variable named `prev` contains the parent chain of the current thread (Only if there are parent posts)
+		3. 名为`prev`的变量包含当前线程的父链（仅当存在父帖子时）
 	</p>
 	<p>
-		4. If the variable `can_reply` has a value (false), it means that the current user cannot reply to this post
+		4. 如果`can_reply`变量的值为false，则表示当前用户无法回复此帖子
 	</p>
-	<h4 class="table-title">GET parameters</h4>
+	<h4 class="table-title">GET参数</h4>
 	<table class="table table-bordered">
 	    <thead>
 	    <tr>
-	        <th width="15%">Field</th>
-	        <th width="25%">Value</th>
-	        <th width="45%">Remarks</th>
+	        <th width="15%">字段</th>
+	        <th width="25%">值</th>
+	        <th width="45%">说明</th>
 	    </tr>
 	    </thead>
 	    <tbody>
 	        <tr>
 	            <td>session_id</td>
-	            <td>​Access token ID</td>
+	            <td>​访问令牌ID</td>
 	            <td>
-	                E.g. de25cc16eb00960f076...
+	                例如: de25cc16eb00960f076...
 	            </td>
 	        </tr>
 	        <tr>
 	            <td>thread_id</td>
-	            <td>Thread int ID</td>
+	            <td>帖子线程ID</td>
 	            <td>
-	                E.g. 123456 (ID of any post to view replies and all details)
+	                例如: 123456（任何帖子的ID，用于查看回复和所有详情）
 	            </td>
 	        </tr>
 	    </tbody>
 	</table>
-	<h4 class="table-title">Success response</h4>
+	<h4 class="table-title">成功响应</h4>
 	<div class="code-holder">
 	    <div class="code-holder-inner">
 	<pre><code class="json">{
@@ -147,18 +147,18 @@
 	</code></pre>
 	    </div>
 	</div>
-	<h4 class="table-title">Error responses</h4>
+	<h4 class="table-title">错误响应</h4>
 	<div class="code-holder">
 	    <div class="code-holder-inner">
 	<pre><code class="json">{
 	    "code": 401,
 	    "data": [],
-	    "message": "Unauthorized Access"
+	    "message": "未授权访问"
 	}
 
 	{
 		"code": 400,
-		"message": "Thread ID is missing or invalid. Please check your details",
+		"message": "帖子ID缺失或无效。请检查您的信息",
 		"data": []
 	}
 	</code></pre>

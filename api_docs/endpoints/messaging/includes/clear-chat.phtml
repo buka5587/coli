@@ -1,65 +1,65 @@
 <div class="content__inner">
-    <h2>Clear Chat/Delete</h2>
+    <h2>清除聊天/删除</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/clear_chat"); ?>) API for accessing the endpoint of clearing & deleting chat history</strong> 
+        请使用此 <strong>(<?php echo cl_link("mobile_api/clear_chat"); ?>) API访问清除和删除聊天历史的端点</strong> 
     </p>
     <br>
-    <h4 class="table-title">Post parameters</h4>
+    <h4 class="table-title">POST参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>session_id</td>
-                <td>​Access token ID</td>
+                <td>访问令牌ID</td>
                 <td>
-                    E.g. de25cc16eb00960f076...
+                    例如: de25cc16eb00960f076...
                 </td>
             </tr>
             <tr>
                 <td>user_id</td>
-                <td>​User ID of the interlocutor</td>
+                <td>对话者用户ID</td>
                 <td>
-                    E.g. 4567
+                    例如: 4567
                 </td>
             </tr>
             <tr>
                 <td>delete_chat</td>
-                <td>​Delete chat after clearing</td>
+                <td>清除后删除聊天</td>
                 <td>
-                    E.g. One of these options (1/0)
+                    例如: 以下选项之一（1/0）
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 200,
-        "message": "Chat deleted successfully",
+        "message": "聊天删除成功",
         "data": []
     }
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 401,
         "data": [],
-        "message": "Unauthorized Access"
+        "message": "未授权访问"
     }
 
     {
         "code": 400,
-        "message": "Interlocutor ID is missing or invalid",
+        "message": "对话者ID缺失或无效",
         "data": []
     }
     </code></pre>

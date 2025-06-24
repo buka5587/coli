@@ -1,75 +1,75 @@
 <div class="content__inner">
-    <h2>Block user profile</h2>
+    <h2>屏蔽用户资料</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/block_user"); ?>) API for access user profile blocking endpoint</strong> 
+        请使用此 <strong>(<?php echo cl_link("mobile_api/block_user"); ?>) API访问用户资料屏蔽端点</strong> 
     </p>
     <h5 class="text-red">
-        <b>IMPORTANT!</b>
+        <b>重要！</b>
     </h5>
     <p>
-        Please note that if you request this api again, the user will be unblocked. That is, the first call blocks and the second unlocks
+        请注意，如果再次请求此 API，用户将被解除屏蔽。即，第一次调用屏蔽，第二次调用解除屏蔽
     </p>
     <br>
-    <h4 class="table-title">Post parameters</h4>
+    <h4 class="table-title">POST参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>session_id</td>
-                <td>Access token ID</td>
+                <td>访问令牌ID</td>
                 <td>
-                    E.g. de25cc16eb00960f076...
+                    例如: de25cc16eb00960f076...
                 </td>
             </tr>
             <tr>
                 <td>user_id</td>
-                <td>User int ID</td>
+                <td>用户整数ID</td>
                 <td>
-                    E.g. 12
+                    例如: 12
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Block success response</h4>
+    <h4 class="table-title">屏蔽成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
     "code": 200,
-    "message": "User profile blocked successfully",
+    "message": "用户资料屏蔽成功",
     "data": []
 }
 </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Unblock success response</h4>
+    <h4 class="table-title">解除屏蔽成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
     "code": 200,
-    "message": "User profile unblocked successfully",
+    "message": "用户资料解除屏蔽成功",
     "data": []
 }
 </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
     "code": 401,
     "data": [],
-    "message": "Unauthorized Access"
+    "message": "未授权访问"
 }
 
 {
     "code": 400,
-    "message": "User ID is missing or invalid",
+    "message": "用户ID缺失或无效",
     "data": []
 }
 </code></pre>

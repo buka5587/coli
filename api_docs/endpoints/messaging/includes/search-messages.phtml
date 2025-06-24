@@ -1,64 +1,64 @@
 <div class="content__inner">
-    <h2>Search Messages</h2>
+    <h2>搜索消息</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/search_messages"); ?>) API for accessing the message search endpoint</strong> 
+        请使用此 <strong>(<?php echo cl_link("mobile_api/search_messages"); ?>) API访问消息搜索端点</strong> 
     </p>
     <br>
-    <h4 class="table-title">Get parameters</h4>
+    <h4 class="table-title">GET参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>session_id</td>
-                <td>​Access token ID</td>
+                <td>访问令牌ID</td>
                 <td>
-                    E.g. de25cc16eb00960f076...
+                    例如: de25cc16eb00960f076...
                 </td>
             </tr>
             <tr>
                 <td>user_id</td>
-                <td>​User ID of the interlocutor</td>
+                <td>对话者用户ID</td>
                 <td>
-                    E.g. 4567
+                    例如: 4567
                 </td>
             </tr>
             <tr>
                 <td>query</td>
-                <td>Search keyword</td>
+                <td>搜索关键词</td>
                 <td>
-                    E.g. `Hello`
+                    例如: `你好`
                 </td>
             </tr>
             <tr>
                 <td>page_size</td>
-                <td>Search result rows limit</td>
+                <td>搜索结果行数限制</td>
                 <td>
-                    Default is (50) rows
+                    默认是(50)行
                 </td>
             </tr>
             <tr>
                 <td>offset_up</td>
-                <td>First message offset ID</td>
+                <td>第一条消息偏移ID</td>
                 <td>
-                    This is only needed when loading previous messages.
+                    仅在加载之前的消息时需要。
                 </td>
             </tr>
             <tr>
                 <td>offset_down</td>
-                <td>Last message offset ID</td>
+                <td>最后一条消息偏移ID</td>
                 <td>
-                    This is only needed when loading next messages.
+                    仅在加载下一条消息时需要。
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
@@ -70,13 +70,13 @@
                 "sent_by": 10,
                 "sent_to": 5,
                 "owner": true,
-                "message": "Hello!",
+                "message": "你好！",
                 "media_file": "",
                 "media_type": "none",
                 "seen": "0",
                 "deleted_fs1": "N",
                 "deleted_fs2": "N",
-                "time": "23 Mar, 2021 11:03",
+                "time": "2021年3月23日 11:03",
                 "side": "right",
                 "media_raw": ""
             }
@@ -85,25 +85,25 @@
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 401,
         "data": [],
-        "message": "Unauthorized Access"
+        "message": "未授权访问"
     }
 
     {
         "code": 400,
-        "message": "Interlocutor ID is missing or invalid",
+        "message": "对话者ID缺失或无效",
         "data": []
     }
 
     {
         "code": 204,
         "data": [],
-        "message": "No data found"
+        "message": "未找到数据"
     }
     </code></pre>
         </div>

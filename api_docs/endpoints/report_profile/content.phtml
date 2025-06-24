@@ -1,104 +1,104 @@
 <div class="content__inner">
-    <h2>Report user profile</h2>
+    <h2>举报用户资料</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/profile_report"); ?>) API for access user profile reporting endpoint</strong> 
+        请使用此 <strong>(<?php echo cl_link("mobile_api/profile_report"); ?>) API访问用户资料举报端点</strong> 
     </p>
     <br>
-    <h4 class="table-title">Post parameters</h4>
+    <h4 class="table-title">POST参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>session_id</td>
-                <td>​Access token ID</td>
+                <td>​访问令牌ID</td>
                 <td>
-                    E.g. de25cc16eb00960f076...
+                    例如: de25cc16eb00960f076...
                 </td>
             </tr>
             <tr>
                 <td>user_id</td>
-                <td>User int ID</td>
+                <td>用户整数ID</td>
                 <td>
-                    E.g. 12
+                    例如: 12
                 </td>
             </tr>
             <tr>
                 <td>reason</td>
                 <td>​
-                    Report reason int ID (This value must be an int number as shown on the right)
+                    举报原因整数ID（此值必须为右侧所示的整数）
                     <br>
                     <br>
                     <div>
-                        For example, if you want to report spam account, then this value should be <b>1</b>
+                        例如，如果你想举报垃圾账号，则此值应为 <b>1</b>
                     </div>
                 </td>
                 <td>
                     <ul>
                         <li>
-                            1 = This user using this account for smap
+                            1 = 此用户使用该账户发送垃圾内容
                         </li>
                         <li>
-                            2 = This user pretended to be someone
+                            2 = 此用户冒充他人
                         </li>
                         <li>
-                            3 = This user posting inappropriate content
+                            3 = 此用户发布不当内容
                         </li>
                         <li>
-                            4 = This is a fake account
+                            4 = 这是一个虚假账号
                         </li>
                         <li>
-                            5 = This is a fraudulent account
+                            5 = 这是一个欺诈账号
                         </li>
                         <li>
-                            6 = Other
+                            6 = 其他
                         </li>
                     </ul>
                 </td>
             </tr>
             <tr>
                 <td>comment</td>
-                <td>​Comment to the reviwer</td>
+                <td>​给审核人员的备注</td>
                 <td>
-                    `Please take some actions. Thanks!`
+                    `请采取相应措施。谢谢！`
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
     "code": 200,
-    "message": "Report sent successfully",
+    "message": "举报已成功提交",
     "data": []
 }
 </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
     "code": 401,
     "data": [],
-    "message": "Unauthorized Access"
+    "message": "未授权访问"
 }
 
 {
     "code": 400,
-    "message": "User id is missing or invalid",
+    "message": "用户ID缺失或无效",
     "data": []
 }
 
 {
     "code": 400,
-    "message": "Report reason id is missing or invalid",
+    "message": "举报原因ID缺失或无效",
     "data": []
 }
 </code></pre>

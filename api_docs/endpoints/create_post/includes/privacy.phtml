@@ -1,71 +1,71 @@
 <div class="content__inner">
-    <h2>Change post privacy</h2>
+    <h2>更改帖子隐私设置</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/change_post_privacy"); ?>)</strong> API endpoint for changing post privacy
+        请使用此 <strong>(<?php echo cl_link("mobile_api/change_post_privacy"); ?>)</strong> API端点更改帖子隐私设置
     </p>
     <p>
-        You will need this endpoint if you want to change the privacy of the post, that is, the option <b>"Who can reply"</b>
+        如果您想更改帖子的隐私设置，即“谁可以回复”选项，将需要使用此端点
     </p>
     <p>
-        However, keep in mind that this option is only available for Posts that do not have a parent chain. That is, the post should be the original post and not the answer.
+        但请注意，此选项仅适用于没有父级链的帖子。也就是说，该帖子应为原始帖子，而非回复。
     </p>
     <br>
-    <h4 class="table-title">Post parameters</h4>
+    <h4 class="table-title">POST参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>session_id</td>
-                <td>Access token ID</td>
+                <td>访问令牌ID</td>
                 <td>
-                    E.g. de25cc16eb00960f076...
+                    例如: de25cc16eb00960f076...
                 </td>
             </tr>
             <tr>
                 <td>post_id</td>
-                <td>Publication int ID</td>
+                <td>帖子ID</td>
                 <td>
-                    E.g. 11
+                    例如: 11
                 </td>
             </tr>
             <tr>
                 <td>privacy</td>
-                <td>Publication privacy settings (Ignored for replies to posts)</td>
+                <td>帖子隐私设置（对帖子回复无效）</td>
                 <td>
-                    One of those values <code>(everyone, followers, mentioned)</code>
+                    以下值之一 <code>(everyone, followers, mentioned)</code>
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 200,
-        "message": "Post privacy changed successfully",
+        "message": "帖子隐私设置更改成功",
         "data": []
     }
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 401,
         "data": [],
-        "message": "Unauthorized Access"
+        "message": "未授权访问"
     }
 
     {
         "code": 400,
-        "message": "Post ID is missing or invalid. Please check your details",
+        "message": "帖子ID缺失或无效，请检查您的信息",
         "data": []
     }
     </code></pre>

@@ -1,101 +1,101 @@
 <div class="content__inner">
-    <h2>Verify user account</h2>
+    <h2>验证用户账户</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/verify_user"); ?>)</strong> API for accessing a user account verification endpoint
+        请使用此 <strong>(<?php echo cl_link("mobile_api/verify_user"); ?>)</strong> API访问用户账户验证端点
     </p>
     <br>
-    <h4 class="table-title">Post parameters</h4>
+    <h4 class="table-title">POST参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>session_id</td>
-                <td>​Access token ID</td>
+                <td>​访问令牌ID</td>
                 <td>
-                    E.g. de25cc16eb00960f076...
+                    例如: de25cc16eb00960f076...
                 </td>
             </tr>
             <tr>
                 <td>text_message</td>
-                <td>​Text message to the reviewer</td>
+                <td>​给审核者的文字消息</td>
                 <td>
-                    E.g. "Please verify my account"
+                    例如: "Please verify my account"
                 </td>
             </tr>
             <tr>
                 <td>video_message</td>
-                <td>Video message to the reviewer</td>
+                <td>给审核者的视频消息</td>
                 <td>
-                    E.g. "video appeal.mp4"
+                    例如: "video appeal.mp4"
                 </td>
             </tr>
             <tr>
                 <td>full_name</td>
-                <td>​User full name</td>
+                <td>​用户全名</td>
                 <td>
-                    E.g. John Smith
+                    例如: John Smith
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
     	"code": 200,
-    	"message": "Verification request sent successfully"
+    	"message": "验证请求已成功提交"
     }
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 401,
         "data": [],
-        "message": "Unauthorized Access"
+        "message": "未授权访问"
     }
 
     {
     	"code": 400,
     	"data": [],
-    	"message": "Your account has already been verified"
+    	"message": "您的账户已完成验证"
     }
 
     {
     	"code": 400,
-    	"message": "Error Duplicate request. Please wait until the end of the review of the previous request",
+    	"message": "错误：重复请求。请等待上一个请求审核结束",
     	"data": []
     }
 
     {
     	"code": 400,
-    	"message": "Invalid user full name. Please check your details",
+    	"message": "用户全名无效。请检查您的信息",
     	"data": []
     }
 
     {
     	"code": 400,
-    	"message": "Text message to the reviewer is incorrect or missing",
+    	"message": "给审核者的文字消息不正确或缺失",
     	"data": []
     }
 
     {
     	"code": 400,
-    	"message": "Video message to the reviewer is incorrect or missing",
+    	"message": "给审核者的视频消息不正确或缺失",
     	"data": []
     }
 
     {
     	"code": 500,
-    	"message": "An error occurred while processing your request. Please try again later.",
+    	"message": "处理您的请求时发生错误。请稍后重试。",
     	"data": []
     }
     </code></pre>

@@ -1,65 +1,65 @@
 <div class="content__inner">
-    <h2>Notification token</h2>
+    <h2>通知令牌</h2>
     <p>
-        Use this <strong>(<?php echo cl_link("mobile_api/save_pnotif_token"); ?>)</strong> API to access the Notification Token Management Endpoint
+        使用此 <strong>(<?php echo cl_link("mobile_api/save_pnotif_token"); ?>)</strong> API访问通知令牌管理端点
     </p>
     <br>
-    <h4 class="table-title">Post parameters</h4>
+    <h4 class="table-title">POST参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>session_id</td>
-                <td>​Access token ID</td>
+                <td>​访问令牌ID</td>
                 <td>
-                    E.g. de25cc16eb00960f076...
+                    例如: de25cc16eb00960f076...
                 </td>
             </tr>
             <tr>
                 <td>token</td>
-                <td>Push notification token</td>
+                <td>推送通知令牌</td>
                 <td>
-                    E.g. c625cc16eb0096...
+                    例如: c625cc16eb0096...
                 </td>
             </tr>
             <tr>
                 <td>type</td>
-                <td>Client device type</td>
+                <td>客户端设备类型</td>
                 <td>
-                    ios/android (Default is android)
+                    ios/android（默认为android）
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 200,
-        "message": "Notification token saved",
+        "message": "通知令牌已保存",
         "data": []
     }
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 401,
         "data":[],
-        "message": "Unauthorized Access"
+        "message": "未授权访问"
     }
 
     {
         "code": 400,
-        "message": "Incorrect token value",
+        "message": "令牌值不正确",
         "data": []
     }
     </code></pre>

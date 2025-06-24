@@ -1,57 +1,57 @@
 <div class="content__inner">
-    <h2>Get Messages</h2>
+    <h2>获取消息</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/get_messages"); ?>) API for accessing the endpoint of the message list</strong> 
+        请使用此 <strong>(<?php echo cl_link("mobile_api/get_messages"); ?>) API访问消息列表端点</strong> 
     </p>
     <br>
-    <h4 class="table-title">Get parameters</h4>
+    <h4 class="table-title">GET参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>session_id</td>
-                <td>​Access token ID</td>
+                <td>访问令牌ID</td>
                 <td>
-                    E.g. de25cc16eb00960f076...
+                    例如: de25cc16eb00960f076...
                 </td>
             </tr>
             <tr>
                 <td>user_id</td>
-                <td>​User ID of the interlocutor</td>
+                <td>对话者用户ID</td>
                 <td>
-                    E.g. 4567
+                    例如: 4567
                 </td>
             </tr>
             <tr>
                 <td>offset_up</td>
-                <td>First message offset ID</td>
+                <td>第一条消息偏移ID</td>
                 <td>
-                    This is only needed when loading old messages from the current chat.
+                    仅在加载当前聊天的旧消息时需要。
                 </td>
             </tr>
             <tr>
                 <td>offset_down</td>
-                <td>Last message offset ID</td>
+                <td>最后一条消息偏移ID</td>
                 <td>
-                    This is only needed when loading new messages from the current chat.
+                    仅在加载当前聊天的新消息时需要。
                 </td>
             </tr>
             <tr>
                 <td>page_size</td>
-                <td>​Total message limit for each request</td>
+                <td>每次请求的消息总数限制</td>
                 <td>
-                    Recommended: 20
+                    推荐: 20
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
@@ -68,7 +68,7 @@
                 "seen": "0",
                 "deleted_fs1": "N",
                 "deleted_fs2": "N",
-                "time": "22 Nov, 2020 10:11",
+                "time": "2020年11月22日 10:11",
                 "side": "right"
             },
             {...}
@@ -77,24 +77,24 @@
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 401,
         "data": [],
-        "message": "Unauthorized Access"
+        "message": "未授权访问"
     }
 
     {
         "code": 400,
-        "message": "Interlocutor ID is missing or invalid",
+        "message": "对话者ID缺失或无效",
         "data": []
     }
 
     {
         "code": 204,
-        "message": "No data found",
+        "message": "未找到数据",
         "data": []
     }
     </code></pre>

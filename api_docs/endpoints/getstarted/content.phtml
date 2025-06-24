@@ -1,58 +1,57 @@
 <div class="content__inner">
     <div class="overflow-hidden content-section">
-        <h1 id="get-started">Get started</h1>
+        <h1 id="get-started">开始使用</h1>
         <p>
-            Welcome to the ColibriSM API. This guide will help you use our API to access ColibriSM API endpoints, therefore, we recommend that you use this particular documentation and contact us for assistance in case of unclear questions. <a href="mailto:vayart.help@gmail.com" class="link">vayart.help@gmail.com</a>
+            欢迎使用 ColibriSM API。本指南将帮助您使用我们的 API 访问 ColibriSM API 端点，因此，我们建议您使用本特定文档，并在有不清楚的问题时联系我们寻求帮助。 <a href="mailto:vayart.help@gmail.com" class="link">vayart.help@gmail.com</a>
         </p>
     </div>
-    <h2>Important terminology</h2>
+    <h2>重要术语</h2>
     <p>
-        Please understand the terminology of our API before you start using it.
+        在开始使用我们的 API 之前，请先了解其术语。
     </p>
     <br>
-    <h4 class="table-title">Basic definitions</h4>
+    <h4 class="table-title">基本定义</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Title</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">标题</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
-                <td>API Access URL</td>
+                <td>API 访问 URL</td>
                 <td>[YOUR-SITE-URL]/mobile_api/[ENDPOINT_TYPE]</td>
                 <td>
-                    URL address for access to API Must be as shown in the example. E.g. <a href="#"><?php echo cl_link("mobile_api/login"); ?></a>
+                    用于访问 API 的 URL 地址必须如示例所示。例如: <a href="#"><?php echo cl_link("mobile_api/login"); ?></a>
                 </td>
             </tr>
             <tr>
-                <td>Auth token</td>
+                <td>认证令牌</td>
                 <td>
                     <a href="#"><?php echo cl_link("mobile_api?session_id=[YOUR-SESSION-ID]"); ?></a>
                 </td>
                 <td>
-                    Most of the user's actions require his authorization, for example, like, or determine whether the user follows some kind of profile, etc. Therefore, we recommend that you always send a user's session on a get request if the user is logged in.
-
+                    大多数用户操作需要其授权，例如点赞或确定用户是否关注某个资料等。因此，我们建议如果用户已登录，您始终在 GET 请求中发送用户的会话。
                 </td>
             </tr>
             <tr>
-                <td>API Access key</td>
+                <td>API 访问密钥</td>
                 <td>
                     <a href="#"><?php echo cl_link("mobile_api?api_key=[YOUR-API-KEY]"); ?></a>
                 </td>
                 <td>
-                    To access the API, the most important point is a unique API key that is specific to each instance of this script.
+                    要访问 API，最重要的是每个脚本实例特有的唯一 API 密钥。
                 </td>
             </tr>
             <tr>
-                <td>Response data type</td>
+                <td>响应数据类型</td>
                 <td>
                     {...}
                 </td>
                 <td>
-                    The server response to your API request will be in JSON format
+                    服务器对您的 API 请求的响应将采用 JSON 格式
                 </td>
             </tr>
         </tbody>

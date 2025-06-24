@@ -1,57 +1,56 @@
 <div class="content__inner">
-    <h2>Publish swift</h2>
+    <h2>发布动态</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/publish_swift"); ?>)</strong> API endpoint for pulishing swift
+        请使用此 <strong>(<?php echo cl_link("mobile_api/publish_swift"); ?>)</strong> API端点发布动态
     </p>
     <p>
-        This stage of creating a swift assumes that you have already uploaded a media file, that is, a video or an image of a swift. Since the media file is required when creating a swift, unlike the description, you can send the description or not.
+        创建动态的此阶段假设您已经上传了媒体文件，即动态的视频或图片。由于创建动态时需要媒体文件，而描述则可选，您可以选择是否发送描述。
     </p>
     <br>
-    <h4 class="table-title">Post parameters</h4>
+    <h4 class="table-title">POST参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>session_id</td>
-                <td>​Access token ID</td>
+                <td>访问令牌ID</td>
                 <td>
-                    E.g. de25cc16eb00960f076...
+                    例如: de25cc16eb00960f076...
                 </td>
             </tr>
             <tr>
                 <td>swift_text</td>
-                <td>Text text message (Max. 200 chars)</td>
+                <td>文本消息（最多200字符）</td>
                 <td>
-                    E.g. `Lorem ipsum`
+                    例如: `Lorem ipsum`
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
-        "code": 400,
         "code": 200,
-        "message": "Swift published successfully",
+        "message": "动态发布成功",
         "data": []
     }
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 401,
         "data": [],
-        "message": "Unauthorized Access"
+        "message": "未授权访问"
     }
     </code></pre>
         </div>

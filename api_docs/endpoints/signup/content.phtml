@@ -1,62 +1,62 @@
 <div class="content__inner">
-    <h2>User signup</h2>
+    <h2>用户注册</h2>
     <p>
-        Please use this <strong>(<?php echo cl_link("mobile_api/signup"); ?>)</strong> API to access user signup endpoint
+        请使用此 <strong>(<?php echo cl_link("mobile_api/signup"); ?>)</strong> API访问用户注册端点
     </p>
     <br>
-    <h4 class="table-title">Post parameters</h4>
+    <h4 class="table-title">POST参数</h4>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th width="15%">Field</th>
-            <th width="25%">Value</th>
-            <th width="45%">Remarks</th>
+            <th width="15%">字段</th>
+            <th width="25%">值</th>
+            <th width="45%">说明</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>first_name</td>
-                <td>User first name</td>
+                <td>用户名字</td>
                 <td>
-                    E.g. John
+                    例如: John
                 </td>
             </tr>
             <tr>
                 <td>last_name</td>
-                <td>User last name</td>
+                <td>用户姓氏</td>
                 <td>
-                    E.g. Smith
+                    例如: Smith
                 </td>
             </tr>
             <tr>
                 <td>email</td>
-                <td>New user's E-mail</td>
+                <td>新用户电子邮箱</td>
                 <td>
-                    This field must also be unique
+                    此字段必须唯一
                 </td>
             </tr>
             <tr>
                 <td>username</td>
-                <td>Unique username</td>
+                <td>唯一用户名</td>
                 <td>
-                    Username without any characters other than Latin letters and numbers
+                    仅包含拉丁字母和数字的用户名
                 </td>
             </tr>
             <tr>
                 <td>password</td>
-                <td>New user's password</td>
+                <td>新用户密码</td>
                 <td>
-                    User password from 6-20 characters
+                    用户密码长度为6-20个字符
                 </td>
             </tr>
         </tbody>
     </table>
-    <h4 class="table-title">Success response</h4>
+    <h4 class="table-title">成功响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 200,
-        "message": "User logged in successfully",
+        "message": "用户登录成功",
         "data":[],
         "auth":{
             "auth_token": "3b2088ac9367efcdcc7137ccc4906ae2f7a83d8a16013901054632f24af8afb76dac2118870547b0aa",
@@ -66,12 +66,12 @@
     </code></pre>
         </div>
     </div>
-    <h4 class="table-title">Error responses</h4>
+    <h4 class="table-title">错误响应</h4>
     <div class="code-holder">
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 410,
-        "message": "This username is already taken"
+        "message": "此用户名已被占用"
     }
     </code></pre>
         </div>
@@ -80,9 +80,9 @@
         <div class="code-holder-inner">
     <pre><code class="json">{
         "code": 410,
-        "message": "This username is already taken"
+        "message": "此用户名已被占用"
     }
     </code></pre>
         </div>
     </div>
- </div>  
+ </div>
